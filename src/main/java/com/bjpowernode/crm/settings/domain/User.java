@@ -1,6 +1,24 @@
 package com.bjpowernode.crm.settings.domain;
 
 public class User {
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", loginAct='" + loginAct + '\'' +
+                ", NAME='" + NAME + '\'' +
+                ", loginPwd='" + loginPwd + '\'' +
+                ", email='" + email + '\'' +
+                ", expireTime='" + expireTime + '\'' +
+                ", lockState='" + lockState + '\'' +
+                ", deptno='" + deptno + '\'' +
+                ", allowIps='" + allowIps + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", createBy='" + createBy + '\'' +
+                ", editTime='" + editTime + '\'' +
+                ", editBy='" + editBy + '\'' +
+                '}';
+    }
 
     private String id;
     private String loginAct;

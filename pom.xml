@@ -4,22 +4,17 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.bjpowernode</groupId>
-  <artifactId>CRMTest4</artifactId>
-  <version>1.0</version>
-
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-  </properties>
+  <groupId>com.bjpowernode.crm</groupId>
+  <artifactId>crm</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>war</packaging>
 
   <dependencies>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
+      <version>4.12</version>
       <scope>test</scope>
     </dependency>
 
@@ -74,26 +69,35 @@
     </dependency>
 
   </dependencies>
-
   <build>
-  <resources>
-    <resource>
-      <directory>src/main/java</directory><!--所在的目录-->
-      <includes><!--包括目录下的.properties,.xml文件都会扫描到-->
-        <include>**/*.properties</include>
-        <include>**/*.xml</include>
-      </includes>
-      <filtering>false</filtering>
-    </resource>
+    <resources>
+      <resource>
+        <directory>src/main/java</directory><!--所在的目录-->
+        <includes><!--包括目录下的.properties,.xml文件都会扫描到-->
+          <include>**/*.properties</include>
+          <include>**/*.xml</include>
+        </includes>
+        <filtering>false</filtering>
+      </resource>
 
-    <resource>
-      <directory>src/main/resources</directory><!--所在的目录-->
-      <includes><!--包括目录下的.properties,.xml文件都会扫描到-->
-        <include>**/*.properties</include>
-        <include>**/*.xml</include>
-      </includes>
-      <filtering>false</filtering>
-    </resource>
-  </resources>
+      <resource>
+        <directory>src/main/resources</directory><!--所在的目录-->
+        <includes><!--包括目录下的.properties,.xml文件都会扫描到-->
+          <include>**/*.properties</include>
+          <include>**/*.xml</include>
+        </includes>
+        <filtering>false</filtering>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>6</source>
+          <target>6</target>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 </project>
