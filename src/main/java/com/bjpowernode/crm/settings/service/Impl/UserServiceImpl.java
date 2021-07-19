@@ -14,10 +14,13 @@ import com.bjpowernode.crm.settings.domain.User;
 import com.bjpowernode.crm.settings.service.UserService;
 import com.bjpowernode.crm.utils.DateTimeUtil;
 import com.bjpowernode.crm.utils.SqlSessionUtil;
+import com.bjpowernode.crm.workbench.dao.ActivityDao;
+import com.bjpowernode.crm.workbench.domain.ActivityRemark;
 import com.fasterxml.jackson.databind.util.ISO8601Utils;
 
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -37,7 +40,7 @@ public class UserServiceImpl implements UserService {
 
 
         User user=userDao.login(map);
-        System.out.println(user);
+        //System.out.println(user);
 
         if(user==null){
             throw new LoginException("账号密码错误！");
@@ -60,7 +63,7 @@ public class UserServiceImpl implements UserService {
 
         //验证可接受的IP地址；
         String allowIps=user.getAllowIps();
-        System.out.println("7777"+allowIps);
+        //System.out.println("7777"+allowIps);
         if(!allowIps.contains(ip)){
 
             //if(allowIps==ip){
@@ -70,5 +73,15 @@ public class UserServiceImpl implements UserService {
 
 
         return user;
+    }
+
+
+
+
+    @Override
+    public List<User> getUserList() {
+        List<User> list=userDao.getUserList();
+        return  list;
+
     }
 }

@@ -18,7 +18,7 @@ import java.util.Map;
 public class UserController extends HttpServlet {
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void service(HttpServletRequest req, HttpServletResponse resp){
        // Student student = new Student();
        // System.out.println(student);
 
