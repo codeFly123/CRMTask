@@ -38,7 +38,180 @@
 
     </insert>
 
-	
+    <select id="getPageListMap" resultType="Activity">
+
+        select
+
+        a.id,
+        a.name,
+        u.name as owner,
+        a.startDate,
+        a.endDate
+
+        from tbl_activity a
+        join tbl_user u
+        on a.owner=u.id
+
+        <where>
+            <if test="name!=null and name!=''">
+                a.name like '%' #{name} '%'
+
+
+            </if>
+            <if test="owner!=null and owner!=''">
+                and u.name like '%' #{owner} '%'
+
+            </if>
+            <if test="startDate!=null and startDate!=''">
+                and a.startDate &gt; #{startDate}
+
+            </if>
+            <if test="endDate!=null and endDate!=''">
+                and a.endDate &lt; #{endDate}
+
+            </if>
+
+
+        </where>
+
+        order by a.createTime desc
+
+        limit #{skipCount},#{pageSize}
+
+
+
+    </select>
+
+    <select id="getPageListCount" resultType="int">
+        select count(*)
+
+        from tbl_activity a
+        join tbl_user u
+        on a.owner=u.id
+
+        <where>
+            <if test="name!=null and name!=''">
+                a.name like '%' #{name} '%'
+
+
+            </if>
+            <if test="owner!=null and owner!=''">
+                and u.name like '%' #{owner} '%'
+
+            </if>
+            <if test="startDate!=null and startDate!=''">
+                and a.startDate &gt; #{startDate}
+
+            </if>
+            <if test="endDate!=null and endDate!=''">
+                and a.endDate &lt; #{endDate}
+
+            </if>
+
+
+        </where>
+
+
+    </select>
+
+    <delete id="delete">
+        delete from tbl_activity where id in
+        <foreach collection="array" item="aid" open="(" close=")" separator=",">
+            #{aid}
+        </foreach>
+    </delete>
+
+    <update id="update" >
+
+                        update tbl_activity set
+                        OWNER=#{OWNER},
+                        NAME=#{NAME},
+                        startDate=#{startDate},
+                        endDate=#{endDate},
+                        cost=#{cost},
+                        description=#{description}
+                       where id=#{id}
+
+    </update>
+
+    <select id="update_select" resultType="Activity">
+        select
+            OWNER,
+            NAME,
+            startDate,
+            endDate,
+            cost,
+            description
+        from tbl_activity
+        where id=#{id}
+
+
+    </select>
+
+    <select id="getDetail" resultType="Activity">
+
+        select
+            a.id,
+            a.NAME,
+            u.name as owner,
+            a.startDate,
+            a.endDate,
+            a.cost,
+            a.description,
+            a.createTime,
+            a.createBy,
+            a.editTime,
+            a.editBy
+        from tbl_activity a
+        join tbl_user u
+        on a.owner=u.id
+        where a.id=#{id}
+
+    </select>
+
+
+    <select id="getRemarkPageList" resultType="ActivityRemark">
+        select *
+        from tbl_activity_remark
+        where activityId=#{activityId}
+
+
+    </select>
+
+    <insert id="createRemark">
+        insert into tbl_activity_remark (
+
+                   id,
+                   noteContent,
+                   createTime,
+                   createBy,
+                   editTime,
+                   editBy,
+                   editFlag,
+                   activityId
+
+        )values(
+                   id=#{id},
+                   noteContent=#{noteContent},
+                   createTime=#{createTime},
+                   createBy=#{createBy},
+                   editTime=#{editTime},
+                   editBy=#{editBy},
+                   editFlag=#{editFlag},
+                   activityId=#{activityId}
+
+        )
+
+
+
+    </insert>
+
+    <delete id="deleteRemark">
+        delete from tbl_activity_remark where id=#{id}
+    </delete>
+
+
+
 </mapper>
 
 

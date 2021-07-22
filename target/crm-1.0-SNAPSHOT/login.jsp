@@ -14,7 +14,7 @@ String basePath=request.getScheme()+"://"+
 	<script type="text/javascript">
 
 		$(function(){
-			if(window.top!=window){
+			if(window.top!==window){
 				window.top.location=window.location;
 			}
 

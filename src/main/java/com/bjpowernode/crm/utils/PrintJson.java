@@ -22,7 +22,7 @@ public class PrintJson {
 		try {
 			//{"success":true}
 			String json = om.writeValueAsString(map);
-			response.getWriter().print(json);
+			response.getWriter().print(json);//让data捕获
 		} catch (JsonGenerationException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
@@ -57,7 +57,9 @@ public class PrintJson {
 		ObjectMapper om = new ObjectMapper();
 		try {
 			String json = om.writeValueAsString(obj);
-			response.getWriter().print(json);
+			System.out.println("json:"+json);
+			System.out.println("6666666666666666,json="+json);
+			response.getWriter().print(json);//让data捕获
 		} catch (JsonGenerationException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
